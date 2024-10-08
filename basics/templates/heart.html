@@ -1,0 +1,134 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Heart Disease Prediction</title>
+    <style>
+        body {
+            font-family: Arial, sans-serif;
+            background: linear-gradient(135deg, #f5f7fa 0%, #c3cfe2 100%);
+            margin: 0;
+            padding: 20px;
+            min-height: 100vh;
+            display: flex;
+            justify-content: center;
+            align-items: center;
+        }
+        .container {
+            background-color: white;
+            border-radius: 8px;
+            padding: 30px;
+            box-shadow: 0 4px 6px rgba(0, 0, 0, 0.1);
+            max-width: 500px;
+            width: 100%;
+        }
+        h1 {
+            color: #333;
+            text-align: center;
+            margin-bottom: 20px;
+        }
+        form {
+            display: grid;
+            gap: 15px;
+        }
+        label {
+            font-weight: bold;
+            color: #555;
+        }
+        input[type="number"] {
+            width: 100%;
+            padding: 8px;
+            border: 1px solid #ddd;
+            border-radius: 4px;
+            box-sizing: border-box;
+        }
+        button {
+            background-color: #4CAF50;
+            color: white;
+            padding: 10px;
+            border: none;
+            border-radius: 4px;
+            cursor: pointer;
+            font-size: 16px;
+            transition: background-color 0.3s;
+        }
+        button:hover {
+            background-color: #45a049;
+        }
+        .result {
+            margin-top: 20px;
+            padding: 15px;
+            background-color: #e7f3fe;
+            border-left: 5px solid #2196F3;
+            border-radius: 4px;
+        }
+    </style>
+</head>
+<body>
+    <div class="container">
+        <h1>Heart Disease Prediction</h1>
+        <form method="POST" action="{% url 'heart' %}">
+            {% csrf_token %}
+            <label for="textBMI">BMI:</label>
+            <input type="number" step="0.1" name="textBMI" id="textBMI" placeholder="e.g. 25.5" required>
+
+            <label for="textSmoking">Smoking:</label>
+            <input type="number" name="textSmoking" id="textSmoking" placeholder="1 for Yes, 0 for No" required>
+
+            <label for="textAlcoholDrinking">Alcohol Drinking:</label>
+            <input type="number" name="textAlcoholDrinking" id="textAlcoholDrinking" placeholder="1 for Yes, 0 for No" required>
+
+            <label for="textStroke">Stroke:</label>
+            <input type="number" name="textStroke" id="textStroke" placeholder="1 for Yes, 0 for No" required>
+
+            <label for="textPhysicalHealth">Physical Health:</label>
+            <input type="number" step="0.1" name="textPhysicalHealth" id="textPhysicalHealth" placeholder="e.g. 7.0" required>
+
+            <label for="textMentalHealth">Mental Health:</label>
+            <input type="number" step="0.1" name="textMentalHealth" id="textMentalHealth" placeholder="e.g. 5.0" required>
+
+            <label for="textDiffWalking">Difficulty Walking:</label>
+            <input type="number" name="textDiffWalking" id="textDiffWalking" placeholder="1 for Yes, 0 for No" required>
+
+            <label for="textSex">Sex:</label>
+            <input type="number" name="textSex" id="textSex" placeholder="1 for Male, 0 for Female" required>
+
+            <label for="textAgeCategory">Age Category:</label>
+            <input type="number" name="textAgeCategory" id="textAgeCategory" placeholder="0-12" required>
+
+            <label for="textRace">Race:</label>
+            <input type="number" name="textRace" id="textRace" placeholder="0-5" required>
+
+            <label for="textDiabetic">Diabetic:</label>
+            <input type="number" name="textDiabetic" id="textDiabetic" placeholder="0-3" required>
+
+            <label for="textPhysicalActivity">Physical Activity:</label>
+            <input type="number" name="textPhysicalActivity" id="textPhysicalActivity" placeholder="1 for Yes, 0 for No" required>
+
+            <label for="textGenHealth">General Health:</label>
+            <input type="number" name="textGenHealth" id="textGenHealth" placeholder="0-4" required>
+
+            <label for="textSleepTime">Sleep Time:</label>
+            <input type="number" step="0.1" name="textSleepTime" id="textSleepTime" placeholder="e.g. 7.5" required>
+
+            <label for="textAsthma">Asthma:</label>
+            <input type="number" name="textAsthma" id="textAsthma" placeholder="1 for Yes, 0 for No" required>
+
+            <label for="textKidneyDisease">Kidney Disease:</label>
+            <input type="number" name="textKidneyDisease" id="textKidneyDisease" placeholder="1 for Yes, 0 for No" required>
+
+            <label for="textSkinCancer">Skin Cancer:</label>
+            <input type="number" name="textSkinCancer" id="textSkinCancer" placeholder="1 for Yes, 0 for No" required>
+
+            <button type="submit" name="submitbtn">Predict</button>
+        </form>
+        {% if result %}
+            <div class="result">
+                <h2>Result:</h2>
+                <p>{{ result }}</p>
+            </div>
+        {% endif %}
+    </div>
+</body>
+</html>
